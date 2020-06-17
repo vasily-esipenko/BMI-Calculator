@@ -1,2 +1,5 @@
 # BMI-Calculator
-Python program, which calculates body mass index
+
+Python program, which calculates body mass index in metric system so far...
+
+future update soon...
