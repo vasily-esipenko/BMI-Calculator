@@ -1,17 +1,35 @@
 # BMI (Body Mass Index) calculator
-# Formula: weight(kg) / (height(cm) ** 2) 
+# Formula (metric): weight(kg) / (height(cm) ** 2)
+# Formula (imperial): 703 * weight(lbs) / (height(in))
 
 def main():
     username = input("Hello! Enter your name: ")
     print(f"Hello, {username}! This program shows your BMI (Body Mass Index)")
-    weight = float(input("First, enter your weight(kg): "))
-    height = float(input("Great! Now enter your height(cm): "))
-    print(f"Your BMI is: {bmi(weight, height)}. {info(bmi(weight, height))}")
+    choice = input("Which measuring system do you prefer? (write \"m\" for metric or \"i\" for imperial) ")
+
+    if choice == "m":
+        weight = float(input("First, enter your weight(kg): "))
+        height = float(input("Great! Now enter your height(cm): "))
+        print(f"Your BMI is: {bmi_m(weight, height)}. {info(bmi_m(weight, height))}")
+    elif choice == "i":
+        weight = int(input("First, enter your weight(lbs): "))
+        print("Great! Now enter your height")
+        feet = int(input("Feet: "))
+        inches = int(input("Inches: "))
+        height = (feet * 12) + inches
+        print(f"Your BMI is: {bmi_i(weight, height)}. {info(bmi_i(weight, height))}")
+    else:
+        print("Something went wrong... Try to repeat your input")
 
 
-def bmi(weight, height):
+def bmi_m(weight, height):
     bmi = weight / ((height/100)**2)
-    return round(bmi, 1)
+    return round(bmi, 2)
+
+
+def bmi_i(weight, height):
+    bmi = 703 * weight / (height ** 2)
+    return round(bmi, 2)
 
 
 def info(bmi):
